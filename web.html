@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripBuddy Tours - Your Journey, Our Promise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-red': '#E63946',
+                        'brand-blue': '#1D3557',
+                        'brand-yellow': '#FFB703',
+                        'brand-teal': '#2A9D8F',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'scale-in': 'scaleIn 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.9)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #FFB703 0%, #E63946 100%);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-body bg-gray-50 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="glass-effect px-6 py-4">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-brand-yellow to-brand-red rounded-full flex items-center justify-center text-white font-bold text-xl">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <span class="text-2xl font-display font-bold text-white">TripBuddy<span class="text-brand-yellow">Tours</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-white font-medium">
+                    <a href="#home" class="hover:text-brand-yellow transition-colors">Home</a>
+                    <a href="#tours" class="hover:text-brand-yellow transition-colors">Tours</a>
+                    <a href="#upcoming" class="hover:text-brand-yellow transition-colors">Upcoming</a>
+                    <a href="#about" class="hover:text-brand-yellow transition-colors">About</a>
+                    <a href="#contact" class="hover:text-brand-yellow transition-colors">Contact</a>
+                </div>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden bg-brand-blue absolute w-full">
+            <div class="flex flex-col p-6 space-y-4 text-white">
+                <a href="#home" onclick="toggleMobileMenu()">Home</a>
+                <a href="#tours" onclick="toggleMobileMenu()">Tours</a>
+                <a href="#upcoming" onclick="toggleMobileMenu()">Upcoming</a>
+                <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=80" alt="Mountain Landscape" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+            <div class="animate-slide-up">
+                <p class="text-brand-yellow font-semibold text-lg mb-4 tracking-widest uppercase">Your Journey, Our Promise</p>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-6 text-shadow leading-tight">
+                    Discover the <span class="gradient-text">Unseen</span><br>
+                    <span class="text-4xl md:text-6xl">With TripBuddy</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto font-light">
+                    From the spiritual heights of Kedarnath to the beaches of Goa, we craft unforgettable journeys from Nagpur to the nation's most breathtaking destinations.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#tours" class="px-8 py-4 bg-brand-yellow text-brand-blue font-bold rounded-full hover:bg-white transition-all transform hover:scale-105 shadow-lg">
+                        Explore Tours <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="https://instagram.com/tripbuddytours" target="_blank" class="px-8 py-4 glass-effect text-white font-bold rounded-full hover:bg-white/20 transition-all border-2 border-white/30">
+                        <i class="fab fa-instagram mr-2"></i> Follow Us
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white">
+            <i class="fas fa-chevron-down text-3xl"></i>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="bg-brand-blue text-white py-8 relative z-20 -mt-2">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div class="scroll-reveal">
+                <div class="text-3xl font-bold text-brand-yellow">50+</div>
+                <div class="text-sm opacity-80">Destinations</div>
+            </div>
+            <div class="scroll-reveal">
+                <div class="text-3xl font-bold text-brand-yellow">10k+</div>
+                <div class="text-sm opacity-80">Happy Travelers</div>
+            </div>
+            <div class="scroll-reveal">
+                <div class="text-3xl font-bold text-brand-yellow">5★</div>
+                <div class="text-sm opacity-80">Rated Service</div>
+            </div>
+            <div class="scroll-reveal">
+                <div class="text-3xl font-bold text-brand-yellow">24/7</div>
+                <div class="text-sm opacity-80">Support</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Tours -->
+    <section id="tours" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-brand-blue mb-4">Curated Experiences</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Handpicked tours designed for every kind of traveler. From spiritual pilgrimages to adrenaline-pumping adventures.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Do Dham Yatra -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-2xl hover-lift scroll-reveal bg-white">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1561361058-4c7e766a3207?w=800&q=80" alt="Kedarnath Temple" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-brand-red text-white px-3 py-1 rounded-full text-sm font-bold">5N/6D</div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-xs font-semibold">Pilgrimage</span>
+                            <span class="text-gray-400 text-sm"><i class="fas fa-map-marker-alt mr-1"></i>Uttarakhand</span>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold text-brand-blue mb-2">Do Dham Yatra</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Sacred journey to Kedarnath & Badrinath. Complete spiritual experience with comfortable stays.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <div class="flex items-center gap-4 text-sm text-gray-500">
+                                <span><i class="fas fa-bed mr-1"></i> Stay</span>
+                                <span><i class="fas fa-utensils mr-1"></i> Meals</span>
+                                <span><i class="fas fa-bus mr-1"></i> Travel</span>
+                            </div>
+                            <button onclick="openBooking('Do Dham Yatra')" class="text-brand-red font-bold hover:underline">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Goa Tour -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-2xl hover-lift scroll-reveal bg-white">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80" alt="Goa Beach" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-brand-teal text-white px-3 py-1 rounded-full text-sm font-bold">Popular</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-semibold">Beach</span>
+                            <span class="text-gray-400 text-sm"><i class="fas fa-map-marker-alt mr-1"></i>Goa & Karnataka</span>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold text-brand-blue mb-2">Goa Easily</h3>
+                        <p class="text-gray-600 mb-4 text-sm">From Nagpur with Karnataka. Water sports, sunset cruises, local food exploration & adventure tours.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded"><i class="fas fa-water mr-1"></i>Water Sports</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded"><i class="fas fa-ship mr-1"></i>Sunset Cruise</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded"><i class="fas fa-utensils mr-1"></i>Food Tour</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-brand-teal font-bold">From Nagpur</span>
+                            <button onclick="openBooking('Goa Tour')" class="text-brand-red font-bold hover:underline">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mussoorie Tour -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-2xl hover-lift scroll-reveal bg-white">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1626014414383-4833ea39e173?w=800&q=80" alt="Mussoorie Hills" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-brand-yellow text-brand-blue px-3 py-1 rounded-full text-sm font-bold">₹13,499</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs font-semibold">Hill Station</span>
+                            <span class="text-gray-400 text-sm"><i class="fas fa-map-marker-alt mr-1"></i>Uttarakhand</span>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold text-brand-blue mb-2">Mussoorie Explorer</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Explore Landour, Rishikesh, Haridwar. Includes Gwalior Fort, Vrindavan, Mathura, Taj Mahal & Jhansi.</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i> All-inclusive package
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-green-500 mr-2"></i> Multiple destinations
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-brand-blue font-bold">Affordable</span>
+                            <button onclick="openBooking('Mussoorie Tour')" class="text-brand-red font-bold hover:underline">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seven Sisters Trek -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-2xl hover-lift scroll-reveal bg-white">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80" alt="Trekking" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold">₹799</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-xs font-semibold">Trekking</span>
+                            <span class="text-gray-400 text-sm"><i class="fas fa-calendar mr-1"></i>March Dates</span>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold text-brand-blue mb-2">Seven Sisters Hills Trek</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Adventure trekking with The Route Hustlers. March batches: 1, 8, 15, 22, 29. Couples: ₹1499.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Breakfast</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Lunch</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Photos</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">Reels</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-purple-600 font-bold">Adventure</span>
+                            <button onclick="openBooking('Seven Sisters Trek')" class="text-brand-red font-bold hover:underline">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Valentine's Camping -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-2xl hover-lift scroll-reveal bg-white">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=800&q=80" alt="Camping" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold">₹2999</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs font-semibold">Romantic</span>
+                            <span class="text-gray-400 text-sm"><i class="fas fa-map-marker-alt mr-1"></i>Nagpur</span>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold text-brand-blue mb-2">Valentine's Night Camping</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Special couples camping at Nagpur. Rain dance, bonfire, live music, unlimited food.</p>
+                        <div class="grid grid-cols-2 gap-2 mb-4 text-xs">
+                            <div class="flex items-center text-gray-600"><i class="fas fa-fire text-orange-500 mr-1"></i> Bonfire</div>
+                            <div class="flex items-center text-gray-600"><i class="fas fa-music text-purple-500 mr-1"></i> Live Music</div>
+                            <div class="flex items-center text-gray-600"><i class="fas fa-cloud-rain text-blue-500 mr-1"></i> Rain Dance</div>
+                            <div class="flex items-center text-gray-600"><i class="fas fa-utensils text-green-500 mr-1"></i> Unlimited Food</div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-pink-500 font-bold">Per Couple</span>
+                            <button onclick="openBooking('Valentine Camping')" class="text-brand-red font-bold hover:underline">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kedarnath 2026 -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-2xl hover-lift scroll-reveal bg-white border-2 border-brand-yellow">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-yellow to-brand-red"></div>
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1589996448606-27d38c978b13?w=800&q=80" alt="Kedarnath 2026" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-brand-red text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">NEW</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-3 py-1 bg-red-100 text-red-600 rounded-full text-xs font-semibold">Spiritual</span>
+                            <span class="text-gray-400 text-sm"><i class="fas fa-calendar mr-1"></i>2026 Batch</span>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold text-brand-blue mb-2">Kedarnath 2026</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Nagpur to Kedarnath 2026 batch now open! Limited seats available. DM for early bird pricing.</p>
+                        <div class="bg-brand-yellow/10 border border-brand-yellow rounded-lg p-3 mb-4">
+                            <p class="text-sm text-brand-blue font-semibold"><i class="fas fa-info-circle mr-1"></i> Recently announced Feb 18, 2026</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-brand-red font-bold">Limited Seats</span>
+                            <button onclick="openBooking('Kedarnath 2026')" class="bg-brand-red text-white px-4 py-2 rounded-full font-bold hover:bg-red-700 transition-colors">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Plans Section -->
+    <section id="upcoming" class="py-20 bg-brand-blue text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80" class="w-full h-full object-cover" alt="Travel">
+        </div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-reveal">
+                    <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">Upcoming Adventures</h2>
+                    <p class="text-xl text-gray-300 mb-8">Stay tuned for our latest batches and exclusive seasonal tours. We announce specific tour details primarily via Instagram reels and stories.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4 bg-white/10 p-4 rounded-xl backdrop-blur-sm">
+                            <div class="w-12 h-12 bg-brand-yellow rounded-full flex items-center justify-center text-brand-blue font-bold text-xl flex-shrink-0">
+                                <i class="fas fa-mountain"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Kedarnath 2026 Batch</h4>
+                                <p class="text-gray-300 text-sm">Nagpur to Kedarnath spiritual journey. DM for details and booking.</p>
+                                <span class="text-brand-yellow text-xs font-semibold mt-1 inline-block">Just Announced</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 bg-white/10 p-4 rounded-xl backdrop-blur-sm">
+                            <div class="w-12 h-12 bg-brand-teal rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">March Trekking Series</h4>
+                                <p class="text-gray-300 text-sm">Seven Sisters Hills Trek - Multiple dates available throughout March.</p>
+                                <span class="text-brand-teal text-xs font-semibold mt-1 inline-block">Multiple Batches</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 bg-white/10 p-4 rounded-xl backdrop-blur-sm">
+                            <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Seasonal Specials</h4>
+                                <p class="text-gray-300 text-sm">Valentine's camping, monsoon treks, and winter expeditions.</p>
+                                <span class="text-pink-400 text-xs font-semibold mt-1 inline-block">Year Round</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <a href="https://instagram.com/tripbuddytours" target="_blank" class="inline-flex items-center gap-2 text-brand-yellow font-bold hover:underline text-lg">
+                            <i class="fab fa-instagram"></i> Follow for Latest Updates
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative scroll-reveal">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=800&q=80" alt="Adventure" class="w-full h-auto">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-blue/80 to-transparent flex items-end p-6">
+                            <div>
+                                <p class="text-brand-yellow font-bold text-sm uppercase tracking-wider mb-1">Next Adventure</p>
+                                <p class="text-white font-display text-2xl font-bold">Your Journey Awaits</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-brand-yellow rounded-full flex items-center justify-center text-brand-blue font-bold text-center text-sm animate-float shadow-xl">
+                        Book<br>Now
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-brand-blue mb-4">Why TripBuddy?</h2>
+                <p class="text-gray-600 text-lg">We handle everything so you can focus on making memories</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6 rounded-2xl hover:bg-gray-50 transition-colors scroll-reveal group">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-2xl flex items-center justify-center text-brand-blue text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-brand-blue mb-2">Comfortable Stays</h3>
+                    <p class="text-gray-600 text-sm">Handpicked accommodations ensuring restful nights after adventurous days.</p>
+                </div>
+
+                <div class="text-center p-6 rounded-2xl hover:bg-gray-50 transition-colors scroll-reveal group">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-brand-blue mb-2">Delicious Meals</h3>
+                    <p class="text-gray-600 text-sm">Local cuisines and unlimited food options on select tours.</p>
+                </div>
+
+                <div class="text-center p-6 rounded-2xl hover:bg-gray-50 transition-colors scroll-reveal group">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-yellow-100 rounded-2xl flex items-center justify-center text-brand-yellow text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-brand-blue mb-2">Hassle-free Travel</h3>
+                    <p class="text-gray-600 text-sm">All transfers included from Nagpur onwards. Sit back and enjoy the ride.</p>
+                </div>
+
+                <div class="text-center p-6 rounded-2xl hover:bg-gray-50 transition-colors scroll-reveal group">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-600 text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-brand-blue mb-2">Memories Captured</h3>
+                    <p class="text-gray-600 text-sm">Professional photography and reels included in adventure packages.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed Preview -->
+    <section class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 scroll-reveal">
+                <div>
+                    <h2 class="text-4xl font-display font-bold text-brand-blue mb-2">Follow Our Journey</h2>
+                    <p class="text-gray-600">@tripbuddytours - Real moments from real travelers</p>
+                </div>
+                <a href="https://instagram.com/tripbuddytours" target="_blank" class="mt-4 md:mt-0 px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white rounded-full font-bold hover:shadow-lg transition-shadow flex items-center gap-2">
+                    <i class="fab fa-instagram text-xl"></i> View Instagram
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-square bg-gray-300 rounded-lg overflow-hidden relative group cursor-pointer scroll-reveal">
+                    <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Trek">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-3xl"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-300 rounded-lg overflow-hidden relative group cursor-pointer scroll-reveal">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Mountains">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-3xl"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-300 rounded-lg overflow-hidden relative group cursor-pointer scroll-reveal">
+                    <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Greece">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-3xl"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-300 rounded-lg overflow-hidden relative group cursor-pointer scroll-reveal">
+                    <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=400&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Travel">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-3xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-brand-blue text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-yellow rounded-full filter blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-teal rounded-full filter blur-3xl opacity-20 translate-y-1/2 -translate-x-1/2"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="scroll-reveal">
+                    <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">Start Your Journey</h2>
+                    <p class="text-xl text-gray-300 mb-8">Ready to explore? Contact us directly for bookings and inquiries. We typically respond within minutes!</p>
+                    
+                    <div class="space-y-6">
+                        <a href="tel:+919021786826" class="flex items-center gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors group">
+                            <div class="w-12 h-12 bg-brand-yellow rounded-full flex items-center justify-center text-brand-blue text-xl group-hover:scale-110 transition-transform">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Primary Contact</p>
+                                <p class="text-xl font-bold">+91 90217 86826</p>
+                            </div>
+                        </a>
+
+                        <a href="tel:+919767731738" class="flex items-center gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors group">
+                            <div class="w-12 h-12 bg-brand-teal rounded-full flex items-center justify-center text-white text-xl group-hover:scale-110 transition-transform">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Secondary Contact</p>
+                                <p class="text-xl font-bold">+91 97677 31738</p>
+                            </div>
+                        </a>
+
+                        <a href="https://instagram.com/tripbuddytours" target="_blank" class="flex items-center gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors group">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-xl group-hover:scale-110 transition-transform">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">DM for Bookings</p>
+                                <p class="text-xl font-bold">@tripbuddytours</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="mt-8 p-6 bg-white/5 rounded-xl border border-white/10">
+                        <h4 class="font-bold text-brand-yellow mb-2"><i class="fas fa-info-circle mr-2"></i>Booking Information</h4>
+                        <p class="text-sm text-gray-300">Specific tour details and dates are announced via Instagram reels and stories. Follow us or DM for the most current information on upcoming batches.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 text-gray-800 scroll-reveal">
+                    <h3 class="text-2xl font-display font-bold text-brand-blue mb-6">Quick Enquiry</h3>
+                    <form id="bookingForm" onsubmit="handleSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Your Name</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all" placeholder="+91 98765 43210">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Interested Tour</label>
+                            <select id="tourSelect" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all">
+                                <option value="">Select a tour...</option>
+                                <option value="Do Dham Yatra">Do Dham Yatra (Kedarnath & Badrinath)</option>
+                                <option value="Goa Tour">Goa Easily with Karnataka</option>
+                                <option value="Mussoorie Tour">Mussoorie Explorer</option>
+                                <option value="Seven Sisters Trek">Seven Sisters Hills Trek</option>
+                                <option value="Valentine Camping">Valentine's Night Camping</option>
+                                <option value="Kedarnath 2026">Kedarnath 2026 Batch</option>
+                                <option value="Custom">Custom Package</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Message</label>
+                            <textarea rows="3" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all" placeholder="Tell us about your preferred dates and group size..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-brand-red text-white font-bold rounded-lg hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            Send Enquiry via WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-brand-yellow to-brand-red rounded-full flex items-center justify-center text-white font-bold text-xl">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <span class="text-2xl font-display font-bold">TripBuddy<span class="text-brand-yellow">Tours</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-4 max-w-md">Your trusted travel partner from Nagpur. Crafting unforgettable journeys across India's most sacred and scenic destinations since 2020.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com/tripbuddytours" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-yellow hover:text-brand-blue transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-green-600 transition-all">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-brand-yellow">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#tours" class="hover:text-white transition-colors">Our Tours</a></li>
+                        <li><a href="#upcoming" class="hover:text-white transition-colors">Upcoming Plans</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-brand-yellow">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-phone mr-2 text-brand-teal"></i> +91 90217 86826</li>
+                        <li><i class="fas fa-phone mr-2 text-brand-teal"></i> +91 97677 31738</li>
+                        <li><i class="fab fa-instagram mr-2 text-brand-teal"></i> @tripbuddytours</li>
+                        <li><i class="fas fa-map-marker-alt mr-2 text-brand-teal"></i> Nagpur, Maharashtra</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+                <p>&copy; 2026 TripBuddy Tours. All rights reserved.</p>
+                <p class="mt-2 md:mt-0">Designed with <i class="fas fa-heart text-brand-red"></i> for travelers</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 transform scale-95 opacity-0 transition-all duration-300" id="modalContent">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-display font-bold text-brand-blue">Book Your Tour</h3>
+                <button onclick="closeBooking()" class="text-gray-400 hover:text-gray-600 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="text-gray-600 mb-4">You're booking: <span id="selectedTour" class="font-bold text-brand-red"></span></p>
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                <p class="text-sm text-yellow-800"><i class="fas fa-info-circle mr-2"></i>You'll be redirected to WhatsApp to complete your booking with our team.</p>
+            </div>
+            <button onclick="proceedToWhatsApp()" class="w-full py-3 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center gap-2">
+                <i class="fab fa-whatsapp text-xl"></i> Continue to WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-brand-blue/95', 'shadow-lg');
+            } else {
+                navbar.classList.remove('bg-brand-blue/95', 'shadow-lg');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+
+        // Booking Modal Logic
+        let currentTour = '';
+
+        function openBooking(tourName) {
+            currentTour = tourName;
+            document.getElementById('selectedTour').textContent = tourName;
+            document.getElementById('tourSelect').value = tourName;
+            const modal = document.getElementById('bookingModal');
+            const content = document.getElementById('modalContent');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeBooking() {
+            const modal = document.getElementById('bookingModal');
+            const content = document.getElementById('modalContent');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        function proceedToWhatsApp() {
+            const phone = '919021786826';
+            const message = `Hi TripBuddy Tours! I'm interested in booking the ${currentTour}. Please share more details.`;
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+            closeBooking();
+        }
+
+        // Form submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const tour = document.getElementById('tourSelect').value || 'General Enquiry';
+            const phone = '919021786826';
+            const message = `Hi TripBuddy Tours!%0A%0AI'm interested in: ${tour}%0AName: ${formData.get('name') || 'Not provided'}%0APhone: ${formData.get('phone') || 'Not provided'}%0AMessage: ${formData.get('message') || 'No additional details'}`;
+            
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+
+        // Close modal on outside click
+        document.getElementById('bookingModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeBooking();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
